@@ -148,7 +148,7 @@ public class GetImage : MonoBehaviour
                           " Height: " + _memorizePhotos.thumbnailList[_memorizePhotos.thumbnailIteration].height);
                 
 
-                Sprite tempSprite = Sprite.Create(getPicture,new Rect(0,0, 300,300), new Vector2(0.5f, 0.5f));
+                Sprite tempSprite = Sprite.Create(myTexture2D,new Rect(0,0, 300,300), new Vector2(0.5f, 0.5f));
 
                 PanelSpawner_script.thumbnailSlot = tempSprite;
                 PanelSpawner_script.AddPanel();
