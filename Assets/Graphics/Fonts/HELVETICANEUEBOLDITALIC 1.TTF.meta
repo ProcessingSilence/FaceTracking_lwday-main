@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: c5078958ba5ad4a4c9dacefc3293dcee
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Helvetica Neue
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 53e851260648c204a916748f6f5ef1e6, type: 3}
+  - {fileID: 12800000, guid: 1309d2c64dc60144894170ec449bac11, type: 3}
+  - {fileID: 12800000, guid: c2b3743c21bc43440aeaf596982beddb, type: 3}
+  - {fileID: 12800000, guid: 452353dca573a1b41a57d2de3088a509, type: 3}
+  - {fileID: 12800000, guid: 0137ca0da8524224cabbf1d6cdeed011, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
