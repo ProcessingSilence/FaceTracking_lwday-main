@@ -10,7 +10,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/GetImage.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="689">
@@ -94,24 +94,39 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="607">
+              <caret line="59" column="28" lean-forward="true" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
+              <folding>
+                <marker date="1606432235832" expanded="false" signature="6:110" ph="..." />
+                <marker date="1606432235832" expanded="true" signature="204:2451" ph="{...}" />
+                <marker date="1606432235832" expanded="true" signature="687:871" ph="{...}" />
+                <marker date="1606432235832" expanded="true" signature="808:865" ph="{...}" />
+                <marker date="1606432235832" expanded="true" signature="929:994" ph="{...}" />
+                <marker date="1606432235832" expanded="true" signature="1041:1771" ph="{...}" />
+                <marker date="1606432235832" expanded="true" signature="1402:1528" ph="{...}" />
+                <marker date="1606432235832" expanded="true" signature="1583:1708" ph="{...}" />
+                <marker date="1606432235832" expanded="true" signature="1821:2116" ph="{...}" />
+                <marker date="1606432235832" expanded="true" signature="2192:2449" ph="{...}" />
+                <marker date="1606432235832" expanded="true" signature="2246:2443" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/PanelSpawner.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <folding>
-                <marker date="1606071497285" expanded="false" signature="6:110" ph="..." />
-                <marker date="1606071497285" expanded="true" signature="182:1998" ph="{...}" />
-                <marker date="1606071497285" expanded="true" signature="425:565" ph="{...}" />
-                <marker date="1606071497285" expanded="true" signature="502:559" ph="{...}" />
-                <marker date="1606071497285" expanded="true" signature="623:644" ph="{...}" />
-                <marker date="1606071497285" expanded="true" signature="691:904" ph="{...}" />
-                <marker date="1606071497285" expanded="true" signature="954:1672" ph="{...}" />
-                <marker date="1606071497285" expanded="true" signature="1095:1549" ph="{...}" />
-                <marker date="1606071497285" expanded="true" signature="1186:1291" ph="{...}" />
-                <marker date="1606071497285" expanded="true" signature="1328:1416" ph="{...}" />
-                <marker date="1606071497285" expanded="true" signature="1562:1665" ph="{...}" />
-                <marker date="1606071497285" expanded="true" signature="1748:1996" ph="{...}" />
-                <marker date="1606071497285" expanded="true" signature="1802:1990" ph="{...}" />
+                <marker date="1606186494169" expanded="false" signature="6:100" ph="..." />
+                <marker date="1606186494169" expanded="true" signature="143:1325" ph="{...}" />
+                <marker date="1606186494169" expanded="true" signature="557:578" ph="{...}" />
+                <marker date="1606186494169" expanded="true" signature="636:752" ph="{...}" />
+                <marker date="1606186494169" expanded="true" signature="668:746" ph="{...}" />
+                <marker date="1606186494169" expanded="true" signature="780:1323" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -125,6 +140,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GetImage.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RectTransformExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PanelSpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/TextureScale.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -132,13 +148,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/GetImage.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="371" />
+    <option name="x" value="1273" />
     <option name="width" value="1294" />
-    <option name="height" value="1167" />
+    <option name="height" value="1407" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -191,12 +208,12 @@
       <option name="presentableId" value="Default" />
       <updated>1606189431718</updated>
       <workItem from="1606189432979" duration="1478000" />
-      <workItem from="1606234446142" duration="1845000" />
+      <workItem from="1606234446142" duration="21744000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3323000" />
+    <option name="totallyTimeSpent" value="23222000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -208,7 +225,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="371" y="0" width="1294" height="1167" extended-state="0" />
+    <frame x="1273" y="0" width="1294" height="1447" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.24959481" />
@@ -257,27 +274,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1606071497285" expanded="false" signature="6:110" ph="..." />
-            <marker date="1606071497285" expanded="true" signature="182:1998" ph="{...}" />
-            <marker date="1606071497285" expanded="true" signature="425:565" ph="{...}" />
-            <marker date="1606071497285" expanded="true" signature="502:559" ph="{...}" />
-            <marker date="1606071497285" expanded="true" signature="623:644" ph="{...}" />
-            <marker date="1606071497285" expanded="true" signature="691:904" ph="{...}" />
-            <marker date="1606071497285" expanded="true" signature="954:1672" ph="{...}" />
-            <marker date="1606071497285" expanded="true" signature="1095:1549" ph="{...}" />
-            <marker date="1606071497285" expanded="true" signature="1186:1291" ph="{...}" />
-            <marker date="1606071497285" expanded="true" signature="1328:1416" ph="{...}" />
-            <marker date="1606071497285" expanded="true" signature="1562:1665" ph="{...}" />
-            <marker date="1606071497285" expanded="true" signature="1748:1996" ph="{...}" />
-            <marker date="1606071497285" expanded="true" signature="1802:1990" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/RectTransformExtensions.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -352,6 +348,40 @@
             <marker date="1606190625723" expanded="true" signature="5495:5998" ph="/* if (_memorizePhotos.thumbnailList[_memorizePhotos.thumbnailIteration] != null) ... */" />
             <marker date="1606190625723" expanded="true" signature="6052:6213" ph="/* If a procedural texture is not destroyed manually, ... */" />
             <marker date="1606190625723" expanded="true" signature="6536:6600" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/PanelSpawner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1606186494169" expanded="false" signature="6:100" ph="..." />
+            <marker date="1606186494169" expanded="true" signature="143:1325" ph="{...}" />
+            <marker date="1606186494169" expanded="true" signature="557:578" ph="{...}" />
+            <marker date="1606186494169" expanded="true" signature="636:752" ph="{...}" />
+            <marker date="1606186494169" expanded="true" signature="668:746" ph="{...}" />
+            <marker date="1606186494169" expanded="true" signature="780:1323" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="59" column="28" lean-forward="true" selection-start-line="59" selection-start-column="28" selection-end-line="59" selection-end-column="28" />
+          <folding>
+            <marker date="1606432235832" expanded="false" signature="6:110" ph="..." />
+            <marker date="1606432235832" expanded="true" signature="204:2451" ph="{...}" />
+            <marker date="1606432235832" expanded="true" signature="687:871" ph="{...}" />
+            <marker date="1606432235832" expanded="true" signature="808:865" ph="{...}" />
+            <marker date="1606432235832" expanded="true" signature="929:994" ph="{...}" />
+            <marker date="1606432235832" expanded="true" signature="1041:1771" ph="{...}" />
+            <marker date="1606432235832" expanded="true" signature="1402:1528" ph="{...}" />
+            <marker date="1606432235832" expanded="true" signature="1583:1708" ph="{...}" />
+            <marker date="1606432235832" expanded="true" signature="1821:2116" ph="{...}" />
+            <marker date="1606432235832" expanded="true" signature="2192:2449" ph="{...}" />
+            <marker date="1606432235832" expanded="true" signature="2246:2443" ph="{...}" />
           </folding>
         </state>
       </provider>

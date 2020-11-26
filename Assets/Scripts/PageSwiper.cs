@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
 {
@@ -14,10 +15,25 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public bool isWholeScreen;
 
     public float widthAmt;
+
+    public PanelSpawner PanelSpawner_script;
+
+    public int currentPanel;
+
+    public float mainPercentage;
+
+    public Text debugText;
+
+    public Vector3 newLocationMain;
+
+    public float additionThing;
+
+    private RectTransform _rt;
     // Start is called before the first frame update
     void Start()
     {
-        panelLocation = transform.position;
+        _rt = GetComponent<RectTransform>();
+        panelLocation = _rt.localPosition;
         if (isWholeScreen)
         {
             widthAmt = Screen.width;
@@ -27,39 +43,36 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     // Update is called once per frame
     void Update()
     {
-        
+        debugText.text = "Panel: " + mainPercentage;
     }
 
     public void OnDrag(PointerEventData data)
     {
-        float difference = data.pressPosition.x - data.position.x;
-        transform.position = panelLocation - new Vector3(difference, 0, 0);
+        float difference = (data.pressPosition.x - data.position.x);
+        _rt.localPosition = panelLocation - new Vector3(difference, 0, 0);
+        _rt.localPosition = new Vector3(_rt.localPosition.x, 0, 0);
+        
+        mainPercentage = ((data.pressPosition.x - data.position.x) / widthAmt);
 
+        if (mainPercentage > .5 + additionThing)
+        {
+            //newLocationMain += new Vector3(-widthAmt*additionThing, 0 ,0);
+            additionThing++;
+        }
+        else if (mainPercentage < -.5 + additionThing)
+        {
+            //newLocationMain += new Vector3(widthAmt*additionThing, 0, 0);
+            additionThing--;
+        }
         //Debug.Log(data.pressPosition - data.position);
     }
 
     public void OnEndDrag(PointerEventData data)
     {
-        float percentage = (data.pressPosition.x - data.position.x) / widthAmt;
-        if (Mathf.Abs(percentage) >= percentThreshold)
-        {
-            Vector3 newLocation = panelLocation;
-            if (percentage > 0)
-            {
-                newLocation += new Vector3(-widthAmt, 0 ,0);                
-            }
-            else if (percentage < 0)
-            {
-                newLocation += new Vector3(widthAmt, 0, 0);
-            }
-
-            StartCoroutine(SmoothMove(transform.position, newLocation, easing));
-            panelLocation = newLocation;
-        }
-        else
-        {
-            StartCoroutine(SmoothMove(transform.position, panelLocation, easing));
-        }
+        //mainPercentage = (data.pressPosition.x - data.position.x) / widthAmt;
+            newLocationMain = new Vector3(widthAmt * additionThing,0,0);
+            StartCoroutine(SmoothMove(_rt.localPosition, newLocationMain, easing));
+            panelLocation = -newLocationMain;
 
     }
     IEnumerator SmoothMove(Vector3 startPos, Vector3 endPos, float seconds)
@@ -68,7 +81,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
         while (t <= 1.0f)
         {
             t += Time.deltaTime / seconds;
-            transform.position = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0f, 1f, t));
+            _rt.localPosition = Vector3.Lerp(startPos, -newLocationMain, Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
     }
