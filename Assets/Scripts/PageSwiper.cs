@@ -43,7 +43,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     // Update is called once per frame
     void Update()
     {
-        debugText.text = "Panel: " + mainPercentage;
+        debugText.text = "Panel: " + additionThing;
     }
 
     public void OnDrag(PointerEventData data)
