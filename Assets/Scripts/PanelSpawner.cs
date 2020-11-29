@@ -24,7 +24,10 @@ public class PanelSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        for (int i = 0; i < 40; i++)
+        {
+            AddPanel();
+        }
     }
 
     // Update is called once per frame
@@ -39,7 +42,6 @@ public class PanelSpawner : MonoBehaviour
 
     public void AddPanel()
     {
-
         GameObject tempPanel = Instantiate(panelObj, Vector3.zero, Quaternion.identity);
         panelListIteration++;
         tempPanel.transform.SetParent(panelParent);

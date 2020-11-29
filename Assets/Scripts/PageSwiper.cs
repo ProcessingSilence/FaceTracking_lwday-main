@@ -27,13 +27,15 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public Vector3 newLocationMain;
 
     public float additionThing;
+    private float originalAdditionThing;
 
     private RectTransform _rt;
+
     // Start is called before the first frame update
     void Start()
     {
         _rt = GetComponent<RectTransform>();
-        panelLocation = _rt.localPosition;
+        panelLocation = _rt.anchoredPosition;
         if (isWholeScreen)
         {
             widthAmt = Screen.width;
@@ -43,23 +45,31 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     // Update is called once per frame
     void Update()
     {
+        mainPercentage = -_rt.anchoredPosition.x / widthAmt;
+        additionThing = Mathf.Round(mainPercentage);
         debugText.text = "Panel: " + additionThing;
+        
     }
 
     public void OnDrag(PointerEventData data)
     {
+        if (SmoothMoveC != null)
+        {
+            StopCoroutine(SmoothMoveC);
+        }
         float difference = (data.pressPosition.x - data.position.x);
-        _rt.localPosition = panelLocation - new Vector3(difference, 0, 0);
-        _rt.localPosition = new Vector3(_rt.localPosition.x, 0, 0);
+        _rt.anchoredPosition = panelLocation - new Vector3(difference, 0, 0);
+        _rt.anchoredPosition = new Vector3(_rt.anchoredPosition.x, 0, 0);
         
-        mainPercentage = ((data.pressPosition.x - data.position.x) / widthAmt);
+        //mainPercentage = ((data.pressPosition.x - data.position.x) / widthAmt);
 
-        if (mainPercentage > .5 + additionThing)
+
+        if (mainPercentage * widthAmt > .5)
         {
             //newLocationMain += new Vector3(-widthAmt*additionThing, 0 ,0);
             additionThing++;
         }
-        else if (mainPercentage < -.5 + additionThing)
+        else if (-mainPercentage * widthAmt < -.5)
         {
             //newLocationMain += new Vector3(widthAmt*additionThing, 0, 0);
             additionThing--;
@@ -70,9 +80,11 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnEndDrag(PointerEventData data)
     {
         //mainPercentage = (data.pressPosition.x - data.position.x) / widthAmt;
-            newLocationMain = new Vector3(widthAmt * additionThing,0,0);
-            StartCoroutine(SmoothMove(_rt.localPosition, newLocationMain, easing));
-            panelLocation = -newLocationMain;
+        newLocationMain = new Vector3(Mathf.Round(mainPercentage) * widthAmt,0,0);
+
+        SmoothMoveC = StartCoroutine(SmoothMove(_rt.anchoredPosition, newLocationMain, easing));
+        panelLocation = -newLocationMain;
+        originalAdditionThing = additionThing;
 
     }
     IEnumerator SmoothMove(Vector3 startPos, Vector3 endPos, float seconds)
@@ -81,8 +93,10 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
         while (t <= 1.0f)
         {
             t += Time.deltaTime / seconds;
-            _rt.localPosition = Vector3.Lerp(startPos, -newLocationMain, Mathf.SmoothStep(0f, 1f, t));
+            _rt.anchoredPosition = Vector3.Lerp(startPos, -newLocationMain, Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
     }
+
+    private Coroutine SmoothMoveC;
 }
