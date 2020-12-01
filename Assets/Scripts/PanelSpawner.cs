@@ -24,9 +24,12 @@ public class PanelSpawner : MonoBehaviour
     private int currentDist;
     
     public PageSwiper PageSwiper_script;
+
     // Start is called before the first frame update
     void Start()
     {
+
+
         if (testAddManyPanels)
         {
             for (int i = 0; i < 10; i++)

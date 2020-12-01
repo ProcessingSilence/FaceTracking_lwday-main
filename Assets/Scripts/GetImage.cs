@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 
@@ -30,18 +31,48 @@ public class GetImage : MonoBehaviour
 
     public PanelSpawner PanelSpawner_script;
 
-    public GameObject facePrefab;
+    public GameObject arSessionOrigin;
+
+    public bool testSceneReset;
+
+    [SerializeField]private GameObject canvasObj;
+
+    public EventSystem eventSystem;
+    public EventSystem currentEventSystem;
     void Awake()
     {
         _memorizePhotos = GetComponent<MemorizePhotos>();
+        
+        canvasObj.name = "finding";
+        if (GameObject.Find("Canvas") == false)
+        {
+            canvasObj.name = "Canvas";
+            DontDestroyOnLoad(canvasObj);
+        }
+        else
+        {
+            Destroy(canvasObj);
+        }
     }
     // Update is called once per frame
 
     void Update()
     {
+        if (currentEventSystem == null)
+        {
+            currentEventSystem = Instantiate(eventSystem);
+            DontDestroyOnLoad(currentEventSystem);
+        }
+
         if (faceMesh != null)
         {
             faceMesh.material.color = new Color(faceMesh.material.color.r,faceMesh.material.color.g,faceMesh.material.color.b,transparencySlider.value);
+        }
+
+        if (testSceneReset)
+        {
+            testSceneReset = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -50,8 +81,8 @@ public class GetImage : MonoBehaviour
         // Get the touch distance from newest starting point to current starting point, then add upon to last touch point
         // so it starts at the image's current position.
         if (faceMesh != null)
-        {
-            if (EventSystem.current.currentSelectedGameObject != transparencySlider.gameObject && GetTouchPos_script.getnewTouchPos)
+        {          
+            if (currentEventSystem.currentSelectedGameObject != transparencySlider.gameObject && GetTouchPos_script.getnewTouchPos)
             {
                 if (getFirstTouch == false)
                 {
@@ -192,13 +223,8 @@ public class GetImage : MonoBehaviour
 
     public void SetFaceTexture(Texture2D facePicture)
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         faceMat.SetTexture("_MainTex", facePicture);
-        var tempObj = GameObject.FindWithTag("FaceObject");
-        if (tempObj)
-        {
-            Destroy(tempObj);
-            Instantiate(facePrefab);
-        }
     }
 
 
