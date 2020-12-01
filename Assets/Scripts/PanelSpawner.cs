@@ -62,6 +62,6 @@ public class PanelSpawner : MonoBehaviour
         PageSwiper_script.SmoothMoveC = null;
         PageSwiper_script.rt.anchoredPosition = new Vector3(-panelList.Count * PageSwiper_script.widthAmt +PageSwiper_script.widthAmt , 0, 0);
         PageSwiper_script.additionThing = panelList.Count - 1;
-        PageSwiper_script.newLocationMain = new Vector3(PageSwiper_script.widthAmt * PageSwiper_script.additionThing,0,0);
+        PageSwiper_script.newLocationMain = PageSwiper_script.panelLocation = new Vector3(-PageSwiper_script.widthAmt * PageSwiper_script.additionThing,0,0);
     }
 }
