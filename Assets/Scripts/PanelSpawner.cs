@@ -22,6 +22,8 @@ public class PanelSpawner : MonoBehaviour
     [SerializeField] private int instantiateDist = -150;
 
     private int currentDist;
+    
+    public PageSwiper PageSwiper_script;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +34,6 @@ public class PanelSpawner : MonoBehaviour
                 AddPanel();
             }
         }
-
-
     }
 
     // Update is called once per frame
@@ -58,5 +58,10 @@ public class PanelSpawner : MonoBehaviour
         tempRectTrans.SetLeft(panelCounter * 150);
         tempPanel.GetComponent<Image>().sprite = thumbnailSlot;
         panelList.Add(tempPanel);
+        
+        PageSwiper_script.SmoothMoveC = null;
+        PageSwiper_script.rt.anchoredPosition = new Vector3(-panelList.Count * PageSwiper_script.widthAmt +PageSwiper_script.widthAmt , 0, 0);
+        PageSwiper_script.additionThing = panelList.Count - 1;
+        PageSwiper_script.newLocationMain = new Vector3(PageSwiper_script.widthAmt * PageSwiper_script.additionThing,0,0);
     }
 }

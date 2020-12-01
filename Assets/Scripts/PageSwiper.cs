@@ -17,9 +17,9 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public float widthAmt;
 
     public PanelSpawner PanelSpawner_script;
-
-    public int currentPanel;
-
+    public GetImage GetImage_script;
+    public MemorizePhotos MemorizePhotos_script;
+    
     public float mainPercentage;
 
     public Text debugText;
@@ -29,13 +29,13 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public float additionThing;
     private float originalAdditionThing;
 
-    private RectTransform _rt;
+    [HideInInspector]public RectTransform rt;
 
     // Start is called before the first frame update
     void Start()
     {
-        _rt = GetComponent<RectTransform>();
-        panelLocation = _rt.anchoredPosition;
+        rt = GetComponent<RectTransform>();
+        panelLocation = rt.anchoredPosition;
         if (isWholeScreen)
         {
             widthAmt = Screen.width;
@@ -45,9 +45,21 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     // Update is called once per frame
     void Update()
     {
-        mainPercentage = -_rt.anchoredPosition.x / widthAmt;
-        if (additionThing <  PanelSpawner_script.panelCounter && additionThing > 0 )
-        additionThing = Mathf.Round(mainPercentage);
+        mainPercentage = -rt.anchoredPosition.x / widthAmt;
+        if (mainPercentage > PanelSpawner_script.panelCounter)
+        {
+            additionThing = PanelSpawner_script.panelCounter;
+        }
+        else if (mainPercentage < 0)
+        {
+            additionThing = 0;
+        }
+        else
+        {
+            additionThing = Mathf.Round(mainPercentage);
+        }
+
+
         debugText.text = "Panel: " + additionThing;
         
     }
@@ -59,8 +71,8 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
             StopCoroutine(SmoothMoveC);
         }
         float difference = (data.pressPosition.x - data.position.x);
-        _rt.anchoredPosition = panelLocation - new Vector3(difference, 0, 0);
-        _rt.anchoredPosition = new Vector3(_rt.anchoredPosition.x, 0, 0);
+        rt.anchoredPosition = panelLocation - new Vector3(difference, 0, 0);
+        rt.anchoredPosition = new Vector3(rt.anchoredPosition.x, 0, 0);
         
         //mainPercentage = ((data.pressPosition.x - data.position.x) / widthAmt);
 
@@ -68,7 +80,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
         if (mainPercentage * widthAmt > .5 )
         {
             //newLocationMain += new Vector3(-widthAmt*additionThing, 0 ,0);
-            if (additionThing <  PanelSpawner_script.panelCounter)
+            if (additionThing <  PanelSpawner_script.panelCounter -1)
                 additionThing++;
         }
         else if (-mainPercentage * widthAmt < -.5)
@@ -86,9 +98,13 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
         //mainPercentage = (data.pressPosition.x - data.position.x) / widthAmt;
         newLocationMain = new Vector3(additionThing * widthAmt,0,0);
 
-        SmoothMoveC = StartCoroutine(SmoothMove(_rt.anchoredPosition, newLocationMain, easing));
+        SmoothMoveC = StartCoroutine(SmoothMove(rt.anchoredPosition, newLocationMain, easing));
         panelLocation = -newLocationMain;
         originalAdditionThing = additionThing;
+        
+        if (MemorizePhotos_script.pathList.Count > 0)
+            GetImage_script.PanelImagePicked(MemorizePhotos_script.pathList[(int)additionThing]);
+            
 
     }
     IEnumerator SmoothMove(Vector3 startPos, Vector3 endPos, float seconds)
@@ -97,10 +113,10 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
         while (t <= 1.0f)
         {
             t += Time.deltaTime / seconds;
-            _rt.anchoredPosition = Vector3.Lerp(startPos, -newLocationMain, Mathf.SmoothStep(0f, 1f, t));
+            rt.anchoredPosition = Vector3.Lerp(startPos, -newLocationMain, Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
     }
 
-    private Coroutine SmoothMoveC;
+    public Coroutine SmoothMoveC;
 }
