@@ -12,9 +12,10 @@ public class PanelSpawner : MonoBehaviour
     public GameObject panelObj;
 
     private GameObject currentPanel;
-    public int panelListIteration = -1;
+    public int panelCounter = -1;
 
     public bool testAddPanel;
+    public bool testAddManyPanels;
 
     public Transform panelParent;
 
@@ -24,10 +25,15 @@ public class PanelSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 40; i++)
+        if (testAddManyPanels)
         {
-            AddPanel();
+            for (int i = 0; i < 10; i++)
+            {
+                AddPanel();
+            }
         }
+
+
     }
 
     // Update is called once per frame
@@ -43,13 +49,13 @@ public class PanelSpawner : MonoBehaviour
     public void AddPanel()
     {
         GameObject tempPanel = Instantiate(panelObj, Vector3.zero, Quaternion.identity);
-        panelListIteration++;
+        panelCounter++;
         tempPanel.transform.SetParent(panelParent);
-        var tempRectTrans = tempPanel.GetComponent<RectTransform>();
+        var tempRectTrans = tempPanel.transform as RectTransform;
         tempRectTrans.SetBottom(-1060);
         tempRectTrans.SetTop(1060);
-        tempRectTrans.SetRight(panelListIteration * -150);
-        tempRectTrans.SetLeft(panelListIteration * 150);
+        tempRectTrans.SetRight(panelCounter * -150);
+        tempRectTrans.SetLeft(panelCounter * 150);
         tempPanel.GetComponent<Image>().sprite = thumbnailSlot;
         panelList.Add(tempPanel);
     }

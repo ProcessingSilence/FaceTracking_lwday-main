@@ -46,6 +46,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     void Update()
     {
         mainPercentage = -_rt.anchoredPosition.x / widthAmt;
+        if (additionThing <  PanelSpawner_script.panelCounter && additionThing > 0 )
         additionThing = Mathf.Round(mainPercentage);
         debugText.text = "Panel: " + additionThing;
         
@@ -64,23 +65,26 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
         //mainPercentage = ((data.pressPosition.x - data.position.x) / widthAmt);
 
 
-        if (mainPercentage * widthAmt > .5)
+        if (mainPercentage * widthAmt > .5 )
         {
             //newLocationMain += new Vector3(-widthAmt*additionThing, 0 ,0);
-            additionThing++;
+            if (additionThing <  PanelSpawner_script.panelCounter)
+                additionThing++;
         }
         else if (-mainPercentage * widthAmt < -.5)
         {
             //newLocationMain += new Vector3(widthAmt*additionThing, 0, 0);
-            additionThing--;
+            if (additionThing > 0)
+                additionThing--;
         }
         //Debug.Log(data.pressPosition - data.position);
+        
     }
 
     public void OnEndDrag(PointerEventData data)
     {
         //mainPercentage = (data.pressPosition.x - data.position.x) / widthAmt;
-        newLocationMain = new Vector3(Mathf.Round(mainPercentage) * widthAmt,0,0);
+        newLocationMain = new Vector3(additionThing * widthAmt,0,0);
 
         SmoothMoveC = StartCoroutine(SmoothMove(_rt.anchoredPosition, newLocationMain, easing));
         panelLocation = -newLocationMain;
