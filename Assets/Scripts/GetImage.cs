@@ -14,7 +14,6 @@ public class GetImage : MonoBehaviour
     public MeshRenderer faceMesh;
 
     public Slider transparencySlider;
-    public Button screenshotButton;
     public GetTouchPos GetTouchPos_script;
     
     
@@ -24,17 +23,16 @@ public class GetImage : MonoBehaviour
     [SerializeField]
     bool testGetTexture;
 
-    
-    private EventSystem _eventSystem;
 
     [SerializeField]private MemorizePhotos _memorizePhotos;
 
     public string previousPath;
 
     public PanelSpawner PanelSpawner_script;
+
+    public GameObject facePrefab;
     void Awake()
     {
-        _eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         _memorizePhotos = GetComponent<MemorizePhotos>();
     }
     // Update is called once per frame
@@ -92,11 +90,11 @@ public class GetImage : MonoBehaviour
         if (testGetTexture)
         {
             testGetTexture = false;
-            SetFaceTexture();
+            SetFaceTexture(getPicture);
         }
     }
     
-    public void PickImage( int maxSize )
+    public void PickImage( int maxSize)
     {
         NativeGallery.Permission permission = NativeGallery.GetImageFromGallery( ( path ) =>
         {
@@ -104,82 +102,103 @@ public class GetImage : MonoBehaviour
             if( path != null )
             {
                 // Create Texture from selected image
-                getPicture = NativeGallery.LoadImageAtPath( path, maxSize );
-                if( getPicture == null )
+                var tempPic= NativeGallery.LoadImageAtPath( path, maxSize );
+                if( tempPic== null )
                 {
                     Debug.Log( "Couldn't load texture from " + path );
                     return;
                 }
-                
 
                 _memorizePhotos.newPath = path;
                 _memorizePhotos.beginArrayAdd = true;
-
-                //var thumbnail = getPicture.GetRawTextureData();
                 
-                /*
-                byte[] tmp = getPicture.GetRawTextureData();
-                Texture2D tmpTexture = new Texture2D(getPicture.width,getPicture.height);
-                tmpTexture.LoadRawTextureData(tmp);
-                TextureScale.Bilinear(tmpTexture, 50, 50);
-                */
-                
-                // CREDIT: https://support.unity.com/hc/en-us/articles/206486626-How-can-I-get-pixels-from-unreadable-textures-
-                RenderTexture tmp = RenderTexture.GetTemporary( 
-                    getPicture.width,
-                    getPicture.height,
-                    0,
-                    RenderTextureFormat.Default,
-                    RenderTextureReadWrite.Linear);
-                Graphics.Blit(getPicture, tmp);
-                RenderTexture previous = RenderTexture.active;
-                RenderTexture.active = tmp;
-                Texture2D myTexture2D = new Texture2D(getPicture.width, getPicture.height);
-                myTexture2D.ReadPixels(new Rect(0, 0, tmp.width, tmp.height), 0, 0);
-                myTexture2D.Apply();
-                RenderTexture.active = previous;
-                RenderTexture.ReleaseTemporary(tmp);
-                
-                TextureScale.Bilinear(myTexture2D, 300, 300);
-                _memorizePhotos.thumbnailList.Add(myTexture2D);
+                _memorizePhotos.thumbnailList.Add(tempPic);
                 _memorizePhotos.thumbnailIteration++;
+                SetCurrentImage(path, tempPic, true);
 
-                Debug.Log("Width: " + _memorizePhotos.thumbnailList[_memorizePhotos.thumbnailIteration].width +
-                          " Height: " + _memorizePhotos.thumbnailList[_memorizePhotos.thumbnailIteration].height);
-                
-
-                Sprite tempSprite = Sprite.Create(myTexture2D,new Rect(0,0, 300,300), new Vector2(0.5f, 0.5f));
-
-                PanelSpawner_script.thumbnailSlot = tempSprite;
-                PanelSpawner_script.AddPanel();
-                /*
-                if (_memorizePhotos.thumbnailList[_memorizePhotos.thumbnailIteration] != null)
-                {
-                    Debug.Log("Picture " + _memorizePhotos.thumbnailIteration + " is not null");
-                }
-                else
-                {
-                    Debug.Log("Picture " + _memorizePhotos.thumbnailIteration + " null");
-                }
-
-                Debug.Log("IMAGE: " + _memorizePhotos.thumbnailList[_memorizePhotos.thumbnailIteration]);
-                */
-                previousPath = path;
-                // If a procedural texture is not destroyed manually, 
-                // it will only be freed after a scene change
-                //Destroy( getPicture, 5f );
-                Debug.Log(getPicture.name);
-                GetTouchPos_script.textureOffset = Vector2.zero;                
-                SetFaceTexture();
             }
         }, "Select a PNG image", "image/png" );
 
         Debug.Log( "Permission result: " + permission );
     }
-    
-    public void SetFaceTexture()
+
+    public void SetCurrentImage(string path, Texture2D facePicture, bool isNewPanel)
     {
-        faceMat.SetTexture("_MainTex", getPicture);
+        Debug.Log("SetCurrentImage() called");
+        previousPath = path;
+        // If a procedural texture is not destroyed manually, 
+        // it will only be freed after a scene change
+        //Destroy( facePicture, 5f );
+        Debug.Log("facePicture: " + facePicture);
+        GetTouchPos_script.textureOffset = Vector2.zero;                
+        SetFaceTexture(facePicture);
+        
+        if (isNewPanel)
+        {
+            // CREDIT: https://support.unity.com/hc/en-us/articles/206486626-How-can-I-get-pixels-from-unreadable-textures-
+            RenderTexture tmp = RenderTexture.GetTemporary( 
+                facePicture.width,
+                facePicture.height,
+                0,
+                RenderTextureFormat.Default,
+                RenderTextureReadWrite.Linear);
+        
+            Graphics.Blit(facePicture, tmp);
+        
+            RenderTexture previous = RenderTexture.active;
+            RenderTexture.active = tmp;
+        
+            Texture2D myTexture2D = new Texture2D(facePicture.width, facePicture.height);
+            myTexture2D.ReadPixels(new Rect(0, 0, tmp.width, tmp.height), 0, 0);
+            myTexture2D.Apply();
+        
+            RenderTexture.active = previous;
+            RenderTexture.ReleaseTemporary(tmp);
+                
+            TextureScale.Bilinear(myTexture2D, 300, 300);
+        
+
+
+            Debug.Log("Width: " + _memorizePhotos.thumbnailList[_memorizePhotos.thumbnailIteration].width +
+                      " Height: " + _memorizePhotos.thumbnailList[_memorizePhotos.thumbnailIteration].height);
+                
+
+            Sprite tempSprite = Sprite.Create(myTexture2D,new Rect(0,0, 300,300), new Vector2(0.5f, 0.5f));
+            
+            PanelSpawner_script.thumbnailSlot = tempSprite;
+            PanelSpawner_script.AddPanel();
+        }
+
+
+    }
+
+    public void PanelImagePicked(string path)
+    {
+        // Create Texture from selected image
+        var tempPic= NativeGallery.LoadImageAtPath( path, 100000000 );
+        Debug.Log("received path: " + path);
+        Debug.Log(tempPic);
+        if( tempPic == null )
+        {
+            Debug.Log( "Couldn't load texture from " + path );
+
+        }
+        else
+        {
+            SetCurrentImage(path, tempPic, false);
+        }
+
+    }
+
+    public void SetFaceTexture(Texture2D facePicture)
+    {
+        faceMat.SetTexture("_MainTex", facePicture);
+        var tempObj = GameObject.FindWithTag("FaceObject");
+        if (tempObj)
+        {
+            Destroy(tempObj);
+            Instantiate(facePrefab);
+        }
     }
 
 
