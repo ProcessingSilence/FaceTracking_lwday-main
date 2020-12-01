@@ -26,7 +26,7 @@ public class MemorizePhotos : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (beginArrayAdd)
         {

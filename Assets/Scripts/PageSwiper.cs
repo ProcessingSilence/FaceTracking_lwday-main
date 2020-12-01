@@ -27,7 +27,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public Vector3 newLocationMain;
 
     public float additionThing;
-    private float originalAdditionThing;
+    private float originalAdditionThing = -10;
 
     [HideInInspector]public RectTransform rt;
 
@@ -100,10 +100,15 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
 
         SmoothMoveC = StartCoroutine(SmoothMove(rt.anchoredPosition, newLocationMain, easing));
         panelLocation = -newLocationMain;
-        originalAdditionThing = additionThing;
-        
-        if (MemorizePhotos_script.pathList.Count > 0)
+
+        // Make sure that the same image isn't reloaded, and path can only be found when there IS panels.
+        if (MemorizePhotos_script.pathList.Count >= 0 && (int)additionThing != (int)originalAdditionThing)
             GetImage_script.PanelImagePicked(MemorizePhotos_script.pathList[(int)additionThing]);
+        
+        Debug.Log("OnEndDrag() path: " +MemorizePhotos_script.pathList[(int)additionThing]);
+        Debug.Log("additionThing: " + (int) additionThing);
+        
+        originalAdditionThing = additionThing;
             
 
     }
