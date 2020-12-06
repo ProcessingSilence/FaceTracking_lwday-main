@@ -39,15 +39,29 @@ public class GetImage : MonoBehaviour
 
     public EventSystem eventSystem;
     public EventSystem currentEventSystem;
+
+    //public GameObject arSystem;
+    private ARFaceManager arFaceManager;
+    
+    //public GameObject[] overlays;
+
+    public GameObject facePrefab;
+    
+    private int overlayNum;
     void Awake()
     {
+        arFaceManager = gameObject.AddComponent<ARFaceManager>();
+        arFaceManager.maximumFaceCount = 1;
+        arFaceManager.facePrefab = facePrefab;
+        
         _memorizePhotos = GetComponent<MemorizePhotos>();
+        overlayNum = -1;
         
         canvasObj.name = "finding";
         if (GameObject.Find("Canvas") == false)
         {
             canvasObj.name = "Canvas";
-            DontDestroyOnLoad(canvasObj);
+            //DontDestroyOnLoad(canvasObj);
         }
         else
         {
@@ -61,7 +75,7 @@ public class GetImage : MonoBehaviour
         if (currentEventSystem == null)
         {
             currentEventSystem = Instantiate(eventSystem);
-            DontDestroyOnLoad(currentEventSystem);
+            //DontDestroyOnLoad(currentEventSystem);
         }
 
         if (faceMesh != null)
@@ -212,8 +226,7 @@ public class GetImage : MonoBehaviour
         if( tempPic == null )
         {
             Debug.Log( "Couldn't load texture from " + path );
-
-        }
+        }       
         else
         {
             SetCurrentImage(path, tempPic, false);
@@ -223,9 +236,24 @@ public class GetImage : MonoBehaviour
 
     public void SetFaceTexture(Texture2D facePicture)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Transform tracked = gameObject.transform.Find("Trackables");
+
+        ARFace[] faces = GameObject.FindObjectsOfType<ARFace>();
+        if (faces != null)
+        {
+            foreach(ARFace face in faces)
+            {
+                Destroy(face.gameObject);
+                Debug.Log(face.gameObject.name);
+            }
+        }
+
+        DestroyImmediate(arFaceManager);
+       
+        arFaceManager = gameObject.AddComponent<ARFaceManager>();
+        arFaceManager.maximumFaceCount = 1;
+        arFaceManager.facePrefab = facePrefab;
+        
         faceMat.SetTexture("_MainTex", facePicture);
     }
-
-
 }

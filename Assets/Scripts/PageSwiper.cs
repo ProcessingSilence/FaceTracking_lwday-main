@@ -29,6 +29,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public float additionThing;
     private float originalAdditionThing = -10;
 
+
     [HideInInspector]public RectTransform rt;
 
     // Start is called before the first frame update

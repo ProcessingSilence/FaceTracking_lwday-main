@@ -87,6 +87,7 @@
           <e p="PanelSpawner.cs" t="Include" />
           <e p="RectTransformExtensions.cs" t="Include" />
           <e p="ScreenshotButton.cs" t="Include" />
+          <e p="SimulateSecondTouch.cs" t="Include" />
           <e p="TakePhoto.cs" t="Include" />
           <e p="TextureScale.cs" t="Include" />
         </e>
