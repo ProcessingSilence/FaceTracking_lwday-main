@@ -150,14 +150,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/SimulateSecondTouch.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+            <state relative-caret-position="920">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
               <folding>
-                <marker date="1607279082395" expanded="true" signature="6:78" ph="..." />
-                <marker date="1607279082395" expanded="true" signature="150:1071" ph="{...}" />
-                <marker date="1607279082395" expanded="true" signature="383:396" ph="{...}" />
-                <marker date="1607279082395" expanded="true" signature="454:1069" ph="{...}" />
-                <marker date="1607279082395" expanded="true" signature="824:1022" ph="{...}" />
+                <marker date="1607279101157" expanded="true" signature="6:78" ph="..." />
+                <marker date="1607279101157" expanded="true" signature="150:1077" ph="{...}" />
+                <marker date="1607279101157" expanded="true" signature="383:396" ph="{...}" />
+                <marker date="1607279101157" expanded="true" signature="454:1075" ph="{...}" />
+                <marker date="1607279101157" expanded="true" signature="824:1028" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -295,12 +295,12 @@
       <workItem from="1606234446142" duration="55266000" />
       <workItem from="1607202220245" duration="12641000" />
       <workItem from="1607222567336" duration="18000" />
-      <workItem from="1607275336391" duration="3714000" />
+      <workItem from="1607275336391" duration="4274000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73117000" />
+    <option name="totallyTimeSpent" value="73677000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -312,7 +312,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.24959481" />
@@ -593,14 +593,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/SimulateSecondTouch.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+        <state relative-caret-position="920">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
           <folding>
-            <marker date="1607279082395" expanded="true" signature="6:78" ph="..." />
-            <marker date="1607279082395" expanded="true" signature="150:1071" ph="{...}" />
-            <marker date="1607279082395" expanded="true" signature="383:396" ph="{...}" />
-            <marker date="1607279082395" expanded="true" signature="454:1069" ph="{...}" />
-            <marker date="1607279082395" expanded="true" signature="824:1022" ph="{...}" />
+            <marker date="1607279101157" expanded="true" signature="6:78" ph="..." />
+            <marker date="1607279101157" expanded="true" signature="150:1077" ph="{...}" />
+            <marker date="1607279101157" expanded="true" signature="383:396" ph="{...}" />
+            <marker date="1607279101157" expanded="true" signature="454:1075" ph="{...}" />
+            <marker date="1607279101157" expanded="true" signature="824:1028" ph="{...}" />
           </folding>
         </state>
       </provider>
