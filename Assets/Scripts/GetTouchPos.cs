@@ -22,16 +22,19 @@ public class GetTouchPos : MonoBehaviour
 
     public float pinchDist;
     public float startingPinchDist;
+    public float lastPinchDist;
 
     private bool getStartPinchDist = true;
 
     public Text debugPinchDistText;
 
-
+    private int numOne = 1;
     //public bool testOffset;
     // Start is called before the first frame update
     void Start()
     {
+        pinchDist = 1;
+        lastPinchDist = 1;
         faceMat.mainTextureOffset = Vector2.zero;
         screenRes = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height);
         Debug.Log("Resolution: Width- " + screenRes.x + " Height- " + screenRes.y);
@@ -57,6 +60,7 @@ public class GetTouchPos : MonoBehaviour
         if (Input.touchCount <= 0 && getnewTouchPos)
         {
             lastTouchPos = touchPos;
+            lastPinchDist = pinchDist;
             getnewTouchPos = false;
             getStartPinchDist = true;
         }
@@ -67,8 +71,8 @@ public class GetTouchPos : MonoBehaviour
             {
                 getStartPinchDist = false;
                 startingPinchDist = Vector3.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
-            }
 
+            }
             var tempDist = Vector3.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position) - startingPinchDist;
 
             tempDist = (tempDist/screenRes.x)*2.5f;
@@ -79,7 +83,7 @@ public class GetTouchPos : MonoBehaviour
             }
             */
 
-            pinchDist = tempDist;
+            pinchDist = (tempDist + lastPinchDist) * numOne;
             
             Debug.Log("Distance: " + Vector3.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position));
 

@@ -121,7 +121,9 @@ public class GetImage : MonoBehaviour
                 }
 
                 faceMesh.material.mainTextureOffset = finalOffset;
+
             }
+            faceMesh.material.mainTextureScale = new Vector2(GetTouchPos_script.pinchDist,GetTouchPos_script.pinchDist);
 
             if (GetTouchPos_script.getnewTouchPos == false)
             {
@@ -238,6 +240,8 @@ public class GetImage : MonoBehaviour
     {
         //Transform tracked = gameObject.transform.Find("Trackables");
 
+        faceMesh.material.mainTextureScale = Vector2.one;
+        
         ARFace[] faces = GameObject.FindObjectsOfType<ARFace>();
         if (faces != null)
         {
