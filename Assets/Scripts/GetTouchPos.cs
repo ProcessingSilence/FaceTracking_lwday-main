@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GetTouchPos : MonoBehaviour
 {
@@ -19,6 +20,13 @@ public class GetTouchPos : MonoBehaviour
 
     public Vector2 textureOffset;
 
+    public float pinchDist;
+    public float startingPinchDist;
+
+    private bool getStartPinchDist = true;
+
+    public Text debugPinchDistText;
+
 
     //public bool testOffset;
     // Start is called before the first frame update
@@ -32,7 +40,7 @@ public class GetTouchPos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && Input.touchCount < 2)
         {
             if (getnewTouchPos == false)
             {
@@ -50,6 +58,35 @@ public class GetTouchPos : MonoBehaviour
         {
             lastTouchPos = touchPos;
             getnewTouchPos = false;
+            getStartPinchDist = true;
         }
+
+        if (Input.touchCount > 1)
+        {
+            if (getStartPinchDist)
+            {
+                getStartPinchDist = false;
+                startingPinchDist = Vector3.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
+            }
+
+            var tempDist = Vector3.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position) - startingPinchDist;
+
+            tempDist = (tempDist/screenRes.x)*2.5f;
+            /*
+            if (tempDist <= 0)
+            {
+                tempDist = 0;
+            }
+            */
+
+            pinchDist = tempDist;
+            
+            Debug.Log("Distance: " + Vector3.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position));
+
+            if (debugPinchDistText)
+            {
+                debugPinchDistText.text = "pinchDist: " + pinchDist;
+            }
+        }                  
     }
 }

@@ -13,7 +13,7 @@ public class SimulateSecondTouch : MonoBehaviour
 
     private float? lastDist;
 
-    public RectTransform triangle;
+    //public RectTransform triangle;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +37,7 @@ public class SimulateSecondTouch : MonoBehaviour
         {
             float difference = currentDist - lastDist.Value;
             Debug.Log("Difference: " + difference);
-            triangle.sizeDelta += new Vector2(difference,difference);
+            //triangle.sizeDelta += new Vector2(difference,difference);
 
         }
         

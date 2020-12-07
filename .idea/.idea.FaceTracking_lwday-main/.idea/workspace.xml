@@ -71,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/GetImage.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2464">
-              <caret line="160" column="49" selection-start-line="160" selection-start-column="49" selection-end-line="160" selection-end-column="49" />
+            <state relative-caret-position="345">
+              <caret line="98" column="108" selection-start-line="98" selection-start-column="97" selection-end-line="98" selection-end-column="108" />
               <folding>
                 <marker date="1607214357875" expanded="false" signature="6:202" ph="..." />
                 <marker date="1607214357875" expanded="true" signature="241:7972" ph="{...}" />
@@ -128,36 +128,41 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/GetTouchPos.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="62" />
+            <state relative-caret-position="812">
+              <caret line="73" column="46" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
               <folding>
-                <marker date="1605578104872" expanded="true" signature="6:110" ph="..." />
-                <marker date="1605578104872" expanded="true" signature="152:1450" ph="{...}" />
-                <marker date="1605578104872" expanded="true" signature="471:549" ph="/* public bool testOffset; ... */" />
-                <marker date="1605578104872" expanded="true" signature="566:810" ph="{...}" />
-                <marker date="1605578104872" expanded="true" signature="868:1448" ph="{...}" />
-                <marker date="1605578104872" expanded="true" signature="908:1296" ph="{...}" />
-                <marker date="1605578104872" expanded="true" signature="959:1097" ph="{...}" />
-                <marker date="1605578104872" expanded="true" signature="1349:1442" ph="{...}" />
+                <marker date="1607362766327" expanded="true" signature="6:110" ph="..." />
+                <marker date="1607362766327" expanded="true" signature="174:2554" ph="{...}" />
+                <marker date="1607362766327" expanded="true" signature="639:717" ph="/* public bool testOffset; ... */" />
+                <marker date="1607362766327" expanded="true" signature="734:978" ph="{...}" />
+                <marker date="1607362766327" expanded="true" signature="1036:2552" ph="{...}" />
+                <marker date="1607362766327" expanded="true" signature="1100:1488" ph="{...}" />
+                <marker date="1607362766327" expanded="true" signature="1151:1289" ph="{...}" />
+                <marker date="1607362766327" expanded="true" signature="1541:1672" ph="{...}" />
+                <marker date="1607362766327" expanded="true" signature="1707:2528" ph="{...}" />
+                <marker date="1607362766327" expanded="true" signature="1752:1933" ph="{...}" />
+                <marker date="1607362766327" expanded="true" signature="2118:2224" ph="/* if (tempDist &lt;= 0) ... */" />
+                <marker date="1607362766327" expanded="true" signature="2421:2518" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/SimulateSecondTouch.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="920">
-              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="713">
+              <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
               <folding>
-                <marker date="1607279101157" expanded="true" signature="6:78" ph="..." />
-                <marker date="1607279101157" expanded="true" signature="150:1077" ph="{...}" />
-                <marker date="1607279101157" expanded="true" signature="383:396" ph="{...}" />
-                <marker date="1607279101157" expanded="true" signature="454:1075" ph="{...}" />
-                <marker date="1607279101157" expanded="true" signature="824:1028" ph="{...}" />
+                <marker date="1607287166296" expanded="true" signature="6:78" ph="..." />
+                <marker date="1607287166296" expanded="true" signature="150:1081" ph="{...}" />
+                <marker date="1607287166296" expanded="true" signature="283:368" ph="/* public RectTransform triangle; ... */" />
+                <marker date="1607287166296" expanded="true" signature="385:398" ph="{...}" />
+                <marker date="1607287166296" expanded="true" signature="456:1079" ph="{...}" />
+                <marker date="1607287166296" expanded="true" signature="826:1032" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -191,6 +196,7 @@
       <find>DontDestroyOnLoad</find>
       <find>arFace</find>
       <find>Dont</find>
+      <find>gettouchPos</find>
     </findStrings>
     <replaceStrings>
       <replace>_rt</replace>
@@ -231,13 +237,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/PanelSpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GetImage.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GetTouchPos.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SimulateSecondTouch.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GetTouchPos.cs" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="1273" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-7" />
     <option name="width" value="1294" />
     <option name="height" value="1407" />
   </component>
@@ -295,12 +301,12 @@
       <workItem from="1606234446142" duration="55266000" />
       <workItem from="1607202220245" duration="12641000" />
       <workItem from="1607222567336" duration="18000" />
-      <workItem from="1607275336391" duration="4274000" />
+      <workItem from="1607275336391" duration="11438000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73677000" />
+    <option name="totallyTimeSpent" value="80841000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -312,7 +318,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="7" />
+    <frame x="-7" y="0" width="1294" height="1407" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.24959481" />
@@ -510,10 +516,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/SimulateSecondTouch.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="713">
+          <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
+          <folding>
+            <marker date="1607287166296" expanded="true" signature="6:78" ph="..." />
+            <marker date="1607287166296" expanded="true" signature="150:1081" ph="{...}" />
+            <marker date="1607287166296" expanded="true" signature="283:368" ph="/* public RectTransform triangle; ... */" />
+            <marker date="1607287166296" expanded="true" signature="385:398" ph="{...}" />
+            <marker date="1607287166296" expanded="true" signature="456:1079" ph="{...}" />
+            <marker date="1607287166296" expanded="true" signature="826:1032" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/GetImage.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2464">
-          <caret line="160" column="49" selection-start-line="160" selection-start-column="49" selection-end-line="160" selection-end-column="49" />
+        <state relative-caret-position="345">
+          <caret line="98" column="108" selection-start-line="98" selection-start-column="97" selection-end-line="98" selection-end-column="108" />
           <folding>
             <marker date="1607214357875" expanded="false" signature="6:202" ph="..." />
             <marker date="1607214357875" expanded="true" signature="241:7972" ph="{...}" />
@@ -576,31 +597,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/GetTouchPos.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="62" />
+        <state relative-caret-position="812">
+          <caret line="73" column="46" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
           <folding>
-            <marker date="1605578104872" expanded="true" signature="6:110" ph="..." />
-            <marker date="1605578104872" expanded="true" signature="152:1450" ph="{...}" />
-            <marker date="1605578104872" expanded="true" signature="471:549" ph="/* public bool testOffset; ... */" />
-            <marker date="1605578104872" expanded="true" signature="566:810" ph="{...}" />
-            <marker date="1605578104872" expanded="true" signature="868:1448" ph="{...}" />
-            <marker date="1605578104872" expanded="true" signature="908:1296" ph="{...}" />
-            <marker date="1605578104872" expanded="true" signature="959:1097" ph="{...}" />
-            <marker date="1605578104872" expanded="true" signature="1349:1442" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/SimulateSecondTouch.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="920">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
-          <folding>
-            <marker date="1607279101157" expanded="true" signature="6:78" ph="..." />
-            <marker date="1607279101157" expanded="true" signature="150:1077" ph="{...}" />
-            <marker date="1607279101157" expanded="true" signature="383:396" ph="{...}" />
-            <marker date="1607279101157" expanded="true" signature="454:1075" ph="{...}" />
-            <marker date="1607279101157" expanded="true" signature="824:1028" ph="{...}" />
+            <marker date="1607362766327" expanded="true" signature="6:110" ph="..." />
+            <marker date="1607362766327" expanded="true" signature="174:2554" ph="{...}" />
+            <marker date="1607362766327" expanded="true" signature="639:717" ph="/* public bool testOffset; ... */" />
+            <marker date="1607362766327" expanded="true" signature="734:978" ph="{...}" />
+            <marker date="1607362766327" expanded="true" signature="1036:2552" ph="{...}" />
+            <marker date="1607362766327" expanded="true" signature="1100:1488" ph="{...}" />
+            <marker date="1607362766327" expanded="true" signature="1151:1289" ph="{...}" />
+            <marker date="1607362766327" expanded="true" signature="1541:1672" ph="{...}" />
+            <marker date="1607362766327" expanded="true" signature="1707:2528" ph="{...}" />
+            <marker date="1607362766327" expanded="true" signature="1752:1933" ph="{...}" />
+            <marker date="1607362766327" expanded="true" signature="2118:2224" ph="/* if (tempDist &lt;= 0) ... */" />
+            <marker date="1607362766327" expanded="true" signature="2421:2518" ph="{...}" />
           </folding>
         </state>
       </provider>
