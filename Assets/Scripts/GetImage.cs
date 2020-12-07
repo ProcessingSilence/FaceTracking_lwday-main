@@ -121,9 +121,9 @@ public class GetImage : MonoBehaviour
                 }
 
                 if (GetTouchPos_script.pinchDist < 0)
-                    faceMesh.material.mainTextureOffset = -finalOffset;
+                    faceMesh.material.mainTextureOffset = -finalOffset - (Vector2.one * GetTouchPos_script.pinchDist/2f);
                 else
-                    faceMesh.material.mainTextureOffset = finalOffset;
+                    faceMesh.material.mainTextureOffset = finalOffset - (Vector2.one * GetTouchPos_script.pinchDist/2f);
 
             }
             faceMesh.material.mainTextureScale = new Vector2(GetTouchPos_script.pinchDist,GetTouchPos_script.pinchDist);
