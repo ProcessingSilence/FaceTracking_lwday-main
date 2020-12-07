@@ -43,7 +43,7 @@ public class GetTouchPos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0 && Input.touchCount < 2)
+        if (Input.touchCount > 0 /*&& Input.touchCount < 2*/)
         {
             if (getnewTouchPos == false)
             {
