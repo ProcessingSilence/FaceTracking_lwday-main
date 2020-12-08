@@ -9,13 +9,22 @@ public class ScreenshotButton : MonoBehaviour
     public Image[] disableObjs;
     public Text ButtonText;
     public GameObject[] disableObjs2;
+    private Image buttonImage;
+
+    private void Start()
+    {
+        buttonImage = GetComponent<Image>();
+    }
+
     public void OnOff(bool boolSwitch)
     {
         if (boolSwitch)
-        {GetComponent<Image>().color = new Color(0,0,0,136);}
+        {
+            buttonImage.color = new Color(0,0,0,.5f);
+        }
         else
         {
-            GetComponent<Image>().color = new Color(0,0,0,0);
+            buttonImage.color = new Color(0,0,0,0);
         }
         foreach (var VARIABLE in disableObjs)
         {

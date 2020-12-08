@@ -27,10 +27,15 @@ public class GetTouchPos : MonoBehaviour
     private bool getStartPinchDist = true;
 
     public Text debugPinchDistText;
-
+    public Text debugTextureOffset;
+    
     private int numOne = 1;
 
     private bool hasHadTwoFingers;
+
+    public GetImage GetImage_script;
+
+
     //public bool testOffset;
     // Start is called before the first frame update
     void Start()
@@ -56,10 +61,18 @@ public class GetTouchPos : MonoBehaviour
 
             touchPos = Input.GetTouch(0).position;
 
-            Debug.Log(textureOffset);   
+
+
         }
         
         textureOffset = new Vector2(((-touchPos.x) / screenRes.x), touchPos.y / screenRes.y);
+        if (debugTextureOffset)
+        {
+            if (debugTextureOffset.IsActive())
+            {
+                debugTextureOffset.text = "textureOffset: " + textureOffset;
+            }
+        }
         
         if (Input.touchCount <= 0 && getnewTouchPos)
         {
@@ -69,9 +82,7 @@ public class GetTouchPos : MonoBehaviour
             getStartPinchDist = true;
         }
 
-        
-
-        
+              
         if (Input.touchCount > 1)
         {
             hasHadTwoFingers = true;
