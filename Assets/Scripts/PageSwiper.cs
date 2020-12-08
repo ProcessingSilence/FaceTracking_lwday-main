@@ -60,9 +60,13 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
             additionThing = Mathf.Round(mainPercentage);
         }
 
-
-        debugText.text = "Panel: " + additionThing;
-        
+        if (debugText)
+        {
+            if (debugText.IsActive())
+            {
+                debugText.text = "Panel: " + additionThing;
+            }
+        }
     }
 
     public void OnDrag(PointerEventData data)

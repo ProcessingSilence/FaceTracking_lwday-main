@@ -12,8 +12,6 @@ public class GetImage : MonoBehaviour
 
     public Material faceMat;
 
-    public MeshRenderer faceMesh;
-
     public Slider transparencySlider;
     public GetTouchPos GetTouchPos_script;
     
@@ -46,8 +44,16 @@ public class GetImage : MonoBehaviour
     //public GameObject[] overlays;
 
     public GameObject facePrefab;
+    private GameObject currentFace;
     
     private int overlayNum;
+
+    private bool hasHadTwoFingers;
+
+    private Vector2 trueFinalOffset;
+
+    private bool lettingFingerGo;
+    private bool touchingFirstTime;
     void Awake()
     {
         arFaceManager = gameObject.AddComponent<ARFaceManager>();
@@ -70,18 +76,31 @@ public class GetImage : MonoBehaviour
     }
     // Update is called once per frame
 
+    private void FixedUpdate()
+    {
+        /*
+        if (currentFace == null)
+        {
+            currentFace = GameObject.FindWithTag("FaceObject");
+        }
+        else if (currentFace != null)
+        {
+            
+        }
+        */
+    }
+
     void Update()
     {
+        
         if (currentEventSystem == null)
         {
             currentEventSystem = Instantiate(eventSystem);
             //DontDestroyOnLoad(currentEventSystem);
         }
 
-        if (faceMesh != null)
-        {
-            faceMesh.material.color = new Color(faceMesh.material.color.r,faceMesh.material.color.g,faceMesh.material.color.b,transparencySlider.value);
-        }
+        faceMat.color = new Color(faceMat.color.r,faceMat.color.g,faceMat.color.b,transparencySlider.value);
+        
 
         if (testSceneReset)
         {
@@ -92,48 +111,49 @@ public class GetImage : MonoBehaviour
 
     void LateUpdate()
     {
+
+
         // Get the touch distance from newest starting point to current starting point, then add upon to last touch point
         // so it starts at the image's current position.
-        if (faceMesh != null)
-        {          
-            if (currentEventSystem.currentSelectedGameObject != transparencySlider.gameObject && GetTouchPos_script.getnewTouchPos)
+         
+        if (currentEventSystem.currentSelectedGameObject != transparencySlider.gameObject && GetTouchPos_script.getnewTouchPos)
+        {
+            if (getFirstTouch == false)
             {
-                if (getFirstTouch == false)
-                {
-                    getFirstTouch = true;
-                    startingOffset = GetTouchPos_script.textureOffset;
-                }
+                getFirstTouch = true;
+                startingOffset = GetTouchPos_script.textureOffset;
+            }
 
-                currentOffset = GetTouchPos_script.textureOffset;
+            currentOffset = GetTouchPos_script.textureOffset;
 
 
-                var finalOffset = (startingOffset - currentOffset) + oldOffset;
+            var finalOffset = (startingOffset - currentOffset) + oldOffset;
 
-                // Wrap around number upon going above 1 or under -1, as texture offset number cannot go any further.
-                if (finalOffset.x > 1 || finalOffset.x < -1)
-                {
-                    finalOffset = new Vector2(Mathf.Repeat(finalOffset.x, 1.0f), finalOffset.y);
-                }
+            // Wrap around number upon going above 1 or under -1, as texture offset number cannot go any further.
+            if (finalOffset.x > 1 || finalOffset.x < -1)
+            {
+                finalOffset = new Vector2(Mathf.Repeat(finalOffset.x, 1.0f), finalOffset.y);
+            }
+        
+            if (finalOffset.y > 1 || finalOffset.y < -1)
+            {
+                finalOffset = new Vector2(finalOffset.x, Mathf.Repeat(finalOffset.y, 1.0f));
+            }
+
+
+            if (GetTouchPos_script.pinchDist < 0)
+                faceMat.mainTextureOffset = -finalOffset /*- (Vector2.one * GetTouchPos_script.pinchDist/2f)*/;
+            else
+                faceMat.mainTextureOffset = finalOffset /*- (Vector2.one * GetTouchPos_script.pinchDist/2f)*/;
             
-                if (finalOffset.y > 1 || finalOffset.y < -1)
-                {
-                    finalOffset = new Vector2(finalOffset.x, Mathf.Repeat(finalOffset.y, 1.0f));
-                }
-
-                if (GetTouchPos_script.pinchDist < 0)
-                    faceMesh.material.mainTextureOffset = -finalOffset - (Vector2.one * GetTouchPos_script.pinchDist/2f);
-                else
-                    faceMesh.material.mainTextureOffset = finalOffset - (Vector2.one * GetTouchPos_script.pinchDist/2f);
-
-            }
-            faceMesh.material.mainTextureScale = new Vector2(GetTouchPos_script.pinchDist,GetTouchPos_script.pinchDist);
-
-            if (GetTouchPos_script.getnewTouchPos == false)
-            {
-                getFirstTouch = false;
-                oldOffset = faceMesh.material.mainTextureOffset;
-            }
         }
+        faceMat.mainTextureScale = new Vector2(GetTouchPos_script.pinchDist,GetTouchPos_script.pinchDist);
+
+        if (GetTouchPos_script.getnewTouchPos == false)
+        {
+            getFirstTouch = false;
+            oldOffset = faceMat.mainTextureOffset;
+        }       
 
 
 
@@ -243,7 +263,7 @@ public class GetImage : MonoBehaviour
     {
         //Transform tracked = gameObject.transform.Find("Trackables");
 
-        faceMesh.material.mainTextureScale = Vector2.one;
+        faceMat.mainTextureScale = Vector2.one;
         
         ARFace[] faces = GameObject.FindObjectsOfType<ARFace>();
         if (faces != null)
@@ -260,6 +280,7 @@ public class GetImage : MonoBehaviour
         arFaceManager = gameObject.AddComponent<ARFaceManager>();
         arFaceManager.maximumFaceCount = 1;
         arFaceManager.facePrefab = facePrefab;
+        GetTouchPos_script.pinchDist = 1;
         
         faceMat.SetTexture("_MainTex", facePicture);
     }

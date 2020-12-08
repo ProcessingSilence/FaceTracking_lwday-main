@@ -505,6 +505,7 @@ MonoBehaviour:
   textureOffset: {x: 0, y: 0}
   pinchDist: 0
   startingPinchDist: 0
+  lastPinchDist: 0
   debugPinchDistText: {fileID: 2099364417}
 --- !u!4 &323105113
 Transform:
@@ -537,7 +538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &664132132
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1107,7 +1108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   getPicture: {fileID: 2800000, guid: b47751f7dddcf304f9f4ff5e95d5a366, type: 3}
   faceMat: {fileID: 2100000, guid: f4d8d3045153a8f428fdb125ad07a472, type: 2}
-  faceMesh: {fileID: 0}
   transparencySlider: {fileID: 1314575139}
   GetTouchPos_script: {fileID: 323105112}
   currentOffset: {x: 0, y: 0}
@@ -1505,7 +1505,12 @@ MonoBehaviour:
   - {fileID: 1278140944}
   - {fileID: 1924392007}
   - {fileID: 1554010463}
+  - {fileID: 1554010463}
+  - {fileID: 1554010463}
   ButtonText: {fileID: 781001028}
+  disableObjs2:
+  - {fileID: 5510614395980293990}
+  - {fileID: 1314575137}
 --- !u!114 &1924392006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1758,7 +1763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2099364417
 MonoBehaviour:
   m_ObjectHideFlags: 0

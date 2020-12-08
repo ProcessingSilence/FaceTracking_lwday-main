@@ -8,8 +8,8 @@ public class HeyIExist : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textureGiver = GameObject.FindWithTag("TextureGiver").GetComponent<GetImage>();
-        textureGiver.faceMesh = GetComponent<MeshRenderer>();
+        //textureGiver = GameObject.FindWithTag("TextureGiver").GetComponent<GetImage>();
+        //textureGiver.faceMesh = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame

@@ -8,7 +8,7 @@ public class ScreenshotButton : MonoBehaviour
     private Image ButtonImage;
     public Image[] disableObjs;
     public Text ButtonText;
-
+    public GameObject[] disableObjs2;
     public void OnOff(bool boolSwitch)
     {
         if (boolSwitch)
@@ -20,6 +20,10 @@ public class ScreenshotButton : MonoBehaviour
         foreach (var VARIABLE in disableObjs)
         {
             VARIABLE.enabled = boolSwitch;
+        }
+        foreach (var VARIABLE in disableObjs2)
+        {
+            VARIABLE.SetActive(boolSwitch);
         }
 
         ButtonText.enabled = boolSwitch;
