@@ -147,7 +147,7 @@ public class GetImage : MonoBehaviour
                 faceMat.mainTextureOffset = finalOffset /*- (Vector2.one * GetTouchPos_script.pinchDist/2f)*/;
             
         }
-        faceMat.mainTextureScale = new Vector2(GetTouchPos_script.pinchDist,GetTouchPos_script.pinchDist);
+        faceMat.mainTextureScale = (-GetTouchPos_script.pinchDist * Vector2.one) + (2 * Vector2.one);
 
         if (GetTouchPos_script.getnewTouchPos == false)
         {
