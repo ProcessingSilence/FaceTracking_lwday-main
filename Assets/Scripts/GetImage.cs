@@ -54,6 +54,8 @@ public class GetImage : MonoBehaviour
 
     private bool lettingFingerGo;
     private bool touchingFirstTime;
+
+    public Texture2D[] defaultImages;
     void Awake()
     {
         arFaceManager = gameObject.AddComponent<ARFaceManager>();
@@ -73,21 +75,7 @@ public class GetImage : MonoBehaviour
         {
             Destroy(canvasObj);
         }
-    }
-    // Update is called once per frame
-
-    private void FixedUpdate()
-    {
-        /*
-        if (currentFace == null)
-        {
-            currentFace = GameObject.FindWithTag("FaceObject");
-        }
-        else if (currentFace != null)
-        {
-            
-        }
-        */
+        //LoadDefaultImages();
     }
 
     void Update()
@@ -111,8 +99,6 @@ public class GetImage : MonoBehaviour
 
     void LateUpdate()
     {
-
-
         // Get the touch distance from newest starting point to current starting point, then add upon to last touch point
         // so it starts at the image's current position.
          
@@ -239,8 +225,6 @@ public class GetImage : MonoBehaviour
             PanelSpawner_script.thumbnailSlot = tempSprite;
             PanelSpawner_script.AddPanel();
         }
-
-
     }
 
     public void PanelImagePicked(string path)
@@ -257,7 +241,14 @@ public class GetImage : MonoBehaviour
         {
             SetCurrentImage(path, tempPic, false);
         }
+    }
 
+    public void LoadDefaultImages()
+    {
+        foreach (var VARIABLE in defaultImages)
+        {
+            SetCurrentImage("", VARIABLE, true);
+        }
     }
 
     public void SetFaceTexture(Texture2D facePicture)
