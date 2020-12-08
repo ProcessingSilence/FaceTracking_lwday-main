@@ -59,7 +59,7 @@ public class GetTouchPos : MonoBehaviour
             Debug.Log(textureOffset);   
         }
         
-        textureOffset = new Vector2(-touchPos.x / screenRes.x, touchPos.y / screenRes.y);
+        textureOffset = new Vector2(((-touchPos.x) / screenRes.x), touchPos.y / screenRes.y);
         
         if (Input.touchCount <= 0 && getnewTouchPos)
         {

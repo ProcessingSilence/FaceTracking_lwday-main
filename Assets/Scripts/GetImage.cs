@@ -142,7 +142,7 @@ public class GetImage : MonoBehaviour
 
 
             if (GetTouchPos_script.pinchDist < 0)
-                faceMat.mainTextureOffset = -finalOffset;
+                faceMat.mainTextureOffset = finalOffset;
             else
                 faceMat.mainTextureOffset = finalOffset;
             
