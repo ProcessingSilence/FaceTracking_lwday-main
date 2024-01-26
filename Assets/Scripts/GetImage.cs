@@ -102,7 +102,7 @@ public class GetImage : MonoBehaviour
         // Get the touch distance from newest starting point to current starting point, then add upon to last touch point
         // so it starts at the image's current position.
          
-        if (currentEventSystem.currentSelectedGameObject != transparencySlider.gameObject && GetTouchPos_script.getnewTouchPos)
+        if (currentEventSystem.currentSelectedGameObject != transparencySlider.gameObject && GetTouchPos_script.getNewTouchPos)
         {
             if (getFirstTouch == false)
             {
@@ -136,7 +136,7 @@ public class GetImage : MonoBehaviour
 
         faceMat.mainTextureScale = (-GetTouchPos_script.pinchDist * Vector2.one) + (2 * Vector2.one);
 
-        if (GetTouchPos_script.getnewTouchPos == false)
+        if (GetTouchPos_script.getNewTouchPos == false)
         {
             getFirstTouch = false;
             oldOffset = faceMat.mainTextureOffset;

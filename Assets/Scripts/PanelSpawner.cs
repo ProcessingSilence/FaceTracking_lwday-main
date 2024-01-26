@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PanelSpawner : MonoBehaviour
@@ -23,7 +25,12 @@ public class PanelSpawner : MonoBehaviour
 
     private int currentDist;
     
-    public PageSwiper PageSwiper_script;
+    private PageSwiper pageSwiper;
+
+    private void Awake()
+    {
+        pageSwiper = GetComponent<PageSwiper>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -54,11 +61,11 @@ public class PanelSpawner : MonoBehaviour
         tempPanel.GetComponent<Image>().sprite = thumbnailSlot;
         panelList.Add(tempPanel);
         
-        PageSwiper_script.SmoothMoveC = null;
-        Vector3 newPos = PageSwiper_script.rt.anchoredPosition;
-        newPos.x = -panelList.Count * PageSwiper_script.widthAmt + PageSwiper_script.widthAmt;
-        PageSwiper_script.rt.anchoredPosition = newPos;
-        PageSwiper_script.additionThing = panelList.Count - 1;
-        PageSwiper_script.newLocationMain = PageSwiper_script.panelLocation = new Vector3(-PageSwiper_script.widthAmt * PageSwiper_script.additionThing,newPos.y,newPos.z);
+        pageSwiper.smoothMoveCoroutine = null;
+        Vector3 newPos = pageSwiper.rt.anchoredPosition;
+        newPos.x = -panelList.Count * pageSwiper.widthAmt + pageSwiper.widthAmt;
+        pageSwiper.rt.anchoredPosition = newPos;
+        pageSwiper.additionThing = panelList.Count - 1;
+        pageSwiper.newLocationMain = pageSwiper.currentPanelLocation = new Vector3(-pageSwiper.widthAmt * pageSwiper.additionThing,newPos.y,newPos.z);
     }
 }

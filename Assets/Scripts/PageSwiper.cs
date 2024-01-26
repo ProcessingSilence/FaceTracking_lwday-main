@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-    public Vector3 panelLocation;
-
-    public float percentThreshold = 0.2f;
-
+    [FormerlySerializedAs("panelLocation")] public Vector3 currentPanelLocation;
+    
     public float easing = 0.5f;
 
     public bool isWholeScreen;
@@ -17,9 +16,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public float widthAmt;
 
     public PanelSpawner PanelSpawner_script;
-    public GetImage GetImage_script;
-    public MemorizePhotos MemorizePhotos_script;
-    
+
     public float mainPercentage;
 
     public Text debugText;
@@ -29,18 +26,17 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public float additionThing;
     private float originalAdditionThing = -10;
 
+    public Coroutine smoothMoveCoroutine;
 
-    [HideInInspector]public RectTransform rt;
+    [HideInInspector] public RectTransform rt;
 
     // Start is called before the first frame update
     void Start()
     {
         rt = GetComponent<RectTransform>();
-        panelLocation = rt.anchoredPosition;
+        currentPanelLocation = rt.anchoredPosition;
         if (isWholeScreen)
-        {
             widthAmt = Screen.width;
-        }
     }
 
     // Update is called once per frame
@@ -48,36 +44,22 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         mainPercentage = -rt.anchoredPosition.x / widthAmt;
         if (mainPercentage > PanelSpawner_script.panelCounter)
-        {
             additionThing = PanelSpawner_script.panelCounter;
-        }
         else if (mainPercentage < 0)
-        {
             additionThing = 0;
-        }
         else
-        {
             additionThing = Mathf.Round(mainPercentage);
-        }
-
-        if (debugText)
-        {
-            if (debugText.IsActive())
-            {
-                debugText.text = "Panel: " + additionThing;
-            }
-        }
     }
 
     public void OnDrag(PointerEventData data)
     {
-        if (SmoothMoveC != null)
+        if (smoothMoveCoroutine != null)
         {
-            StopCoroutine(SmoothMoveC);
+            StopCoroutine(smoothMoveCoroutine);
         }
         float difference = (data.pressPosition.x - data.position.x);
         Vector3 newPos = rt.anchoredPosition;
-        newPos.x = panelLocation.x - difference;
+        newPos.x = currentPanelLocation.x - difference;
         rt.anchoredPosition = newPos;
         
         //mainPercentage = ((data.pressPosition.x - data.position.x) / widthAmt);
@@ -102,17 +84,11 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnEndDrag(PointerEventData data)
     {
         //mainPercentage = (data.pressPosition.x - data.position.x) / widthAmt;
-        newLocationMain = new Vector3(additionThing * widthAmt,rt.anchoredPosition.y);
+        Vector2 anchoredPosition = rt.anchoredPosition;
+        newLocationMain = new Vector3(additionThing * widthAmt,anchoredPosition.y);
 
-        SmoothMoveC = StartCoroutine(SmoothMove(rt.anchoredPosition, newLocationMain, easing));
-        panelLocation = -newLocationMain;
-
-        // Make sure that the same image isn't reloaded, and path can only be found when there IS panels.
-        if (MemorizePhotos_script.pathList.Count >= 0 && (int)additionThing != (int)originalAdditionThing)
-            GetImage_script.PanelImagePicked(MemorizePhotos_script.pathList[(int)additionThing]);
-        
-        Debug.Log("OnEndDrag() path: " +MemorizePhotos_script.pathList[(int)additionThing]);
-        Debug.Log("additionThing: " + (int) additionThing);
+        smoothMoveCoroutine = StartCoroutine(SmoothMove(anchoredPosition, newLocationMain, easing));
+        currentPanelLocation = -newLocationMain;
         
         originalAdditionThing = additionThing;
             
@@ -131,6 +107,4 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
             yield return null;
         }
     }
-
-    public Coroutine SmoothMoveC;
 }
