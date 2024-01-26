@@ -28,33 +28,25 @@ public class PanelSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-
-        if (testAddManyPanels)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                AddPanel();
-            }
-        }
+        if (!testAddManyPanels) return;
+        for (int i = 0; i < 10; i++)
+            AddPanel();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (testAddPanel)
-        {
-            testAddPanel = false;
-            AddPanel();
-        }
+        if (!testAddPanel) return;
+        testAddPanel = false;
+        AddPanel();
     }
 
     public void AddPanel()
     {
-        GameObject tempPanel = Instantiate(panelObj, Vector3.zero, Quaternion.identity);
+        GameObject tempPanel = Instantiate(panelObj, transform.position, Quaternion.identity);
         panelCounter++;
         tempPanel.transform.SetParent(panelParent);
-        var tempRectTrans = tempPanel.transform as RectTransform;
+        RectTransform tempRectTrans = tempPanel.transform as RectTransform;
         tempRectTrans.SetBottom(-1060);
         tempRectTrans.SetTop(1060);
         tempRectTrans.SetRight(panelCounter * -150);
@@ -63,8 +55,10 @@ public class PanelSpawner : MonoBehaviour
         panelList.Add(tempPanel);
         
         PageSwiper_script.SmoothMoveC = null;
-        PageSwiper_script.rt.anchoredPosition = new Vector3(-panelList.Count * PageSwiper_script.widthAmt +PageSwiper_script.widthAmt , 0, 0);
+        Vector3 newPos = PageSwiper_script.rt.anchoredPosition;
+        newPos.x = -panelList.Count * PageSwiper_script.widthAmt + PageSwiper_script.widthAmt;
+        PageSwiper_script.rt.anchoredPosition = newPos;
         PageSwiper_script.additionThing = panelList.Count - 1;
-        PageSwiper_script.newLocationMain = PageSwiper_script.panelLocation = new Vector3(-PageSwiper_script.widthAmt * PageSwiper_script.additionThing,0,0);
+        PageSwiper_script.newLocationMain = PageSwiper_script.panelLocation = new Vector3(-PageSwiper_script.widthAmt * PageSwiper_script.additionThing,newPos.y,newPos.z);
     }
 }

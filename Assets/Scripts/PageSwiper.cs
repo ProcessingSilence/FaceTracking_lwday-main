@@ -76,8 +76,9 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
             StopCoroutine(SmoothMoveC);
         }
         float difference = (data.pressPosition.x - data.position.x);
-        rt.anchoredPosition = panelLocation - new Vector3(difference, 0, 0);
-        rt.anchoredPosition = new Vector3(rt.anchoredPosition.x, 0, 0);
+        Vector3 newPos = rt.anchoredPosition;
+        newPos.x = panelLocation.x - difference;
+        rt.anchoredPosition = newPos;
         
         //mainPercentage = ((data.pressPosition.x - data.position.x) / widthAmt);
 
@@ -101,7 +102,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnEndDrag(PointerEventData data)
     {
         //mainPercentage = (data.pressPosition.x - data.position.x) / widthAmt;
-        newLocationMain = new Vector3(additionThing * widthAmt,0,0);
+        newLocationMain = new Vector3(additionThing * widthAmt,rt.anchoredPosition.y);
 
         SmoothMoveC = StartCoroutine(SmoothMove(rt.anchoredPosition, newLocationMain, easing));
         panelLocation = -newLocationMain;
@@ -123,7 +124,10 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
         while (t <= 1.0f)
         {
             t += Time.deltaTime / seconds;
-            rt.anchoredPosition = Vector3.Lerp(startPos, -newLocationMain, Mathf.SmoothStep(0f, 1f, t));
+            Vector3 newPos = rt.anchoredPosition;
+            newPos.x = Vector3.Lerp(startPos, -newLocationMain, Mathf.SmoothStep(0f, 1f, t)).x;
+            
+            rt.anchoredPosition = newPos;
             yield return null;
         }
     }
