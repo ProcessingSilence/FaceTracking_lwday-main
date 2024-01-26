@@ -15,10 +15,7 @@ public class PanelSpawner : MonoBehaviour
 
     private GameObject currentPanel;
     public int panelCounter = -1;
-
-    public bool testAddPanel;
-    public bool testAddManyPanels;
-
+    
     public Transform panelParent;
 
     [SerializeField] private int instantiateDist = -150;
@@ -32,20 +29,11 @@ public class PanelSpawner : MonoBehaviour
         pageSwiper = GetComponent<PageSwiper>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (!testAddManyPanels) return;
-        for (int i = 0; i < 10; i++)
-            AddPanel();
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (!testAddPanel) return;
-        testAddPanel = false;
-        AddPanel();
+        if (Input.GetKeyDown("space"))
+            AddPanel();
     }
 
     public void AddPanel()

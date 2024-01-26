@@ -6,10 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="aa167cff-9b9b-4543-bc01-013d19c22801" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FaceTracking_lwday-main/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FaceTracking_lwday-main/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GetImage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GetImage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GetTouchPos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GetTouchPos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GetImage.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GetImage.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GetTouchPos.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GetTouchPos.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HeyIExist.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HeyIExist.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MemorizePhotos.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MemorizePhotos.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PanelSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PanelSpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScreenshotButton.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScreenshotButton.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SimulateSecondTouch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SimulateSecondTouch.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TakePhoto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TakePhoto.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TextureScale.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TextureScale.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -408,7 +421,7 @@
       <workItem from="1607222567336" duration="18000" />
       <workItem from="1607275336391" duration="22525000" />
       <workItem from="1607391692717" duration="17939000" />
-      <workItem from="1706219107730" duration="7218000" />
+      <workItem from="1706219107730" duration="9499000" />
     </task>
     <servers />
   </component>
