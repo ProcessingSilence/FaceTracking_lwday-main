@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
 {
+    public float widthAmount;
     [FormerlySerializedAs("panelLocation")] public Vector3 currentPanelLocation;
     
     public float easing = 0.5f;
@@ -15,7 +16,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public float widthAmt;
 
-    public PanelSpawner PanelSpawner_script;
+    // public PanelSpawner PanelSpawner_script;
 
     public float mainPercentage;
 
@@ -24,6 +25,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
     public Vector3 newLocationMain;
 
     public float additionThing;
+    private int panelCount;
     private float originalAdditionThing = -10;
 
     public Coroutine smoothMoveCoroutine;
@@ -37,14 +39,32 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
         currentPanelLocation = rt.anchoredPosition;
         if (isWholeScreen)
             widthAmt = Screen.width;
+        foreach (Transform child in transform)
+        {
+            RectTransform childRT = child.GetComponent<RectTransform>();
+            if (!childRT) continue;
+            
+            panelCount++;
+            childRT.SetBottom(-1060);
+            childRT.SetTop(1060);
+            childRT.SetRight(panelCount * -150);
+            childRT.SetLeft(panelCount * 150);
+                
+            smoothMoveCoroutine = null;
+            Vector3 newPos = rt.anchoredPosition;
+            newPos.x = panelCount * widthAmount + widthAmount;
+            rt.anchoredPosition = newPos;
+            additionThing = panelCount;
+            newLocationMain = currentPanelLocation = new Vector3(-widthAmount * additionThing,newPos.y,newPos.z);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         mainPercentage = -rt.anchoredPosition.x / widthAmt;
-        if (mainPercentage > PanelSpawner_script.panelCounter)
-            additionThing = PanelSpawner_script.panelCounter;
+        if (mainPercentage > panelCount)
+            additionThing = panelCount;
         else if (mainPercentage < 0)
             additionThing = 0;
         else
@@ -68,7 +88,7 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
         if (mainPercentage * widthAmt > .5 )
         {
             //newLocationMain += new Vector3(-widthAmt*additionThing, 0 ,0);
-            if (additionThing <  PanelSpawner_script.panelCounter -1)
+            if (additionThing <  panelCount)
                 additionThing++;
         }
         else if (-mainPercentage * widthAmt < -.5)
