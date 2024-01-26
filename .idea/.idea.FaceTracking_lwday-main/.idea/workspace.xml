@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="aa167cff-9b9b-4543-bc01-013d19c22801" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FaceTracking_lwday-main/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FaceTracking_lwday-main/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PanelSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PanelSpawner.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,13 +282,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Unity/Hub/Editor/2020.1.6f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/EventData/PointerEventData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Graphics/FaceShader.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/LunarConsole/Editor/Updater.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/NativeGallery/Android/NGCallbackHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GetImage.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GetTouchPos.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PanelSpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RectTransformExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.arfoundation@3.1.6/Runtime/AR/ARFace.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.arfoundation@3.1.6/Runtime/AR/ARFaceMeshVisualizer.cs" root0="SKIP_HIGHLIGHTING" />

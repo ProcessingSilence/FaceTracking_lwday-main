@@ -1,44 +1,25 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-    public float widthAmount;
-    [FormerlySerializedAs("panelLocation")] public Vector3 currentPanelLocation;
-    
-    public float easing = 0.5f;
+    [SerializeField] private float easing = 0.5f;
+    [SerializeField] private float widthAmount;
 
-    public bool isWholeScreen;
-
-    public float widthAmt;
-
-    // public PanelSpawner PanelSpawner_script;
-
-    public float mainPercentage;
-
-    public Text debugText;
-
-    public Vector3 newLocationMain;
-
-    public float additionThing;
     private int panelCount;
-    private float originalAdditionThing = -10;
+    private float mainPercentage;
+    private float currentPanelTracker;
+    private Vector3 newLocationMain;
+    private Vector3 currentPanelLocation;
 
-    public Coroutine smoothMoveCoroutine;
+    private Coroutine smoothMoveCoroutine;
+    private RectTransform rt;
 
-    [HideInInspector] public RectTransform rt;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         rt = GetComponent<RectTransform>();
         currentPanelLocation = rt.anchoredPosition;
-        if (isWholeScreen)
-            widthAmt = Screen.width;
         foreach (Transform child in transform)
         {
             RectTransform childRT = child.GetComponent<RectTransform>();
@@ -52,76 +33,60 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
                 
             smoothMoveCoroutine = null;
             Vector3 newPos = rt.anchoredPosition;
-            newPos.x = panelCount * widthAmount + widthAmount;
-            rt.anchoredPosition = newPos;
-            additionThing = panelCount;
-            newLocationMain = currentPanelLocation = new Vector3(-widthAmount * additionThing,newPos.y,newPos.z);
-        }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        mainPercentage = -rt.anchoredPosition.x / widthAmt;
-        if (mainPercentage > panelCount)
-            additionThing = panelCount;
-        else if (mainPercentage < 0)
-            additionThing = 0;
-        else
-            additionThing = Mathf.Round(mainPercentage);
+            rt.anchoredPosition = newPos;
+            currentPanelTracker = panelCount;
+            newLocationMain = currentPanelLocation = new Vector3(0,newPos.y,newPos.z);
+        }
     }
 
     public void OnDrag(PointerEventData data)
     {
         if (smoothMoveCoroutine != null)
-        {
             StopCoroutine(smoothMoveCoroutine);
-        }
+        
         float difference = (data.pressPosition.x - data.position.x);
         Vector3 newPos = rt.anchoredPosition;
         newPos.x = currentPanelLocation.x - difference;
         rt.anchoredPosition = newPos;
-        
-        //mainPercentage = ((data.pressPosition.x - data.position.x) / widthAmt);
 
-
-        if (mainPercentage * widthAmt > .5 )
+        if (mainPercentage * widthAmount > .5 )
         {
-            //newLocationMain += new Vector3(-widthAmt*additionThing, 0 ,0);
-            if (additionThing <  panelCount)
-                additionThing++;
+            if (currentPanelTracker <  panelCount)
+                currentPanelTracker++;
         }
-        else if (-mainPercentage * widthAmt < -.5)
+        else if (-mainPercentage * widthAmount < -.5)
         {
-            //newLocationMain += new Vector3(widthAmt*additionThing, 0, 0);
-            if (additionThing > 0)
-                additionThing--;
+            if (currentPanelTracker > 0)
+                currentPanelTracker--;
         }
-        //Debug.Log(data.pressPosition - data.position);
-        
+        mainPercentage = -rt.anchoredPosition.x / widthAmount;
+        if (mainPercentage > panelCount)
+            currentPanelTracker = panelCount;
+        else if (mainPercentage < 0)
+            currentPanelTracker = 0;
+        else
+            currentPanelTracker = Mathf.Round(mainPercentage);
     }
 
     public void OnEndDrag(PointerEventData data)
     {
-        //mainPercentage = (data.pressPosition.x - data.position.x) / widthAmt;
         Vector2 anchoredPosition = rt.anchoredPosition;
-        newLocationMain = new Vector3(additionThing * widthAmt,anchoredPosition.y);
+        newLocationMain = new Vector3(currentPanelTracker * widthAmount,anchoredPosition.y);
 
-        smoothMoveCoroutine = StartCoroutine(SmoothMove(anchoredPosition, newLocationMain, easing));
+        smoothMoveCoroutine = StartCoroutine(SmoothMove(anchoredPosition, -newLocationMain, easing));
         currentPanelLocation = -newLocationMain;
-        
-        originalAdditionThing = additionThing;
-            
-
     }
+    
+    // todo: refactor code to be better written.
     IEnumerator SmoothMove(Vector3 startPos, Vector3 endPos, float seconds)
     {
         float t = 0f;
         while (t <= 1.0f)
         {
             t += Time.deltaTime / seconds;
-            Vector3 newPos = rt.anchoredPosition;
-            newPos.x = Vector3.Lerp(startPos, -newLocationMain, Mathf.SmoothStep(0f, 1f, t)).x;
+            Vector3 newPos = startPos;
+            newPos.x = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0f, 1f, t)).x;
             
             rt.anchoredPosition = newPos;
             yield return null;

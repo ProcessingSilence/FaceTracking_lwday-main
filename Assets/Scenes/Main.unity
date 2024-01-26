@@ -1012,13 +1012,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30bc1227b10c4f48af5b1c9bbd61111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  widthAmount: 0
-  currentPanelLocation: {x: 0, y: 50, z: 0}
   easing: 0.5
-  isWholeScreen: 0
-  widthAmt: 150
-  mainPercentage: 0
-  debugText: {fileID: 0}
-  newLocationMain: {x: 0, y: 0, z: 0}
-  additionThing: 0
-  rt: {fileID: 0}
+  widthAmount: 150
